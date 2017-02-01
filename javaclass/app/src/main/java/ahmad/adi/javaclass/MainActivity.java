@@ -19,9 +19,18 @@ public class MainActivity extends AppCompatActivity {
         addSeparate();
 
         initBarang();
-        showString+= arrBarang[5].toString();
-        addSeparate();
-        showString += arrBarang[1].toString();
+     //   showString+= arrBarang[5].toString();
+     //   addSeparate();
+     //   showString += arrBarang[1].toString();
+
+        transaksi trans1 = new transaksi();
+        trans1.addBarang(arrBarang[3]);
+        trans1.addBarang(arrBarang[6]);
+        trans1.addBarang(arrBarang[9]);
+        showString += trans1.printTransaksi();
+        showString += "rata-rata harga barang yang di beli"+
+                trans1.averageTransaksi();
+        showString += "\n"+trans1.maxBarang();
         showText.setText(showString);
     }
 
@@ -39,6 +48,6 @@ public class MainActivity extends AppCompatActivity {
         arrBarang[6]= new barang("Kursi", barang.Non_ELECTRONIK, 2000000);
         arrBarang[7]= new barang("RAM", barang.ELEKTRONIK, 1000000);
         arrBarang[8]= new barang("Almari", barang.Non_ELECTRONIK, 10000000);
-        arrBarang[9]= new barang("Pintu", barang.Non_ELECTRONIK, 15000000);
+        arrBarang[9]= new barang("Sendok", barang.Non_ELECTRONIK, 15000000);
     }
 }
