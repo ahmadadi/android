@@ -41,4 +41,11 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(EXTRA, "Map");
         startActivity(intent);
     }
+    public void openEmail (View view){
+        //membuka aktivity yang akan mengeksekusi explicit intents
+        Intent intent = new Intent(this, IntentExecutor.class);
+        intent.putExtra(EXTRA, "Email");
+        startActivity(intent);
+    }
+
 }

@@ -26,6 +26,8 @@ public class IntentExecutor extends AppCompatActivity {
             btn.setText("Hubungi No tlp");
         }else if(operator.equals("Map")) {
             btn.setText("Buka peta");
+        }else if(operator.equals("Email")) {
+            btn.setText("Buka email");
         }
     }
 
@@ -42,8 +44,10 @@ public class IntentExecutor extends AppCompatActivity {
         }else if (operator.equals("Map")){
             Uri gmmIntentUri = Uri.parse("geo:"+exec);
             exeIntent = new Intent(Intent.ACTION_VIEW,gmmIntentUri);
+        }else if (operator.equals("Email")) {
+            Uri gmmIntentUri = Uri.parse("email:" + exec);
+            exeIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         }
-
         startActivity(exeIntent);
     }
 }
