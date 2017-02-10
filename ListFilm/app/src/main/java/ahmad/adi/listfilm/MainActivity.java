@@ -1,11 +1,14 @@
 package ahmad.adi.listfilm;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
                                     "The Avanger", "Fantactis Beasts & Where to Find Them"};
 
     private ArrayList<Movie> movies = new ArrayList<>();
+
+    ArrayAdapter<Movie> adapter;
+    ListView listView;
 
     private void initMovies(){
         movies.add(new Movie("The Thor","Film super hero yang turun ke bumi",7.5, 2009));
@@ -38,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initMovies();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, filmTitle);
-        ListView listView = (ListView) findViewById(R.id.list_film);
+        adapter = new ArrayAdapter<Movie>(this, android.R.layout.simple_list_item_1, movies);
+        listView= (ListView) findViewById(R.id.listFilm);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -53,5 +58,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void tambah (View view){
+        Intent intent = new Intent(this,TambahList.class);
+        startActivityForResult(intent,1);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                Movie newMovie = (Movie) data.getSerializableExtra("filmlist.result");
+                movies.add(newMovie);
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
 }
