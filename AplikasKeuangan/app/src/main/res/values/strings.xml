@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Aplikas Keuangan</string>
+    <string-array name="jenis">
+        <item>pemasukan</item>
+        <item>pengeluaran</item>
+    </string-array>
+</resources>
